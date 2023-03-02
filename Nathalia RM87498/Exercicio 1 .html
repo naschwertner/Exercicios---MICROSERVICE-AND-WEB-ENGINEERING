@@ -1,0 +1,51 @@
+<!--1.Trazer todos os campos que a API do via CEP e mostrar em campos do tipo text-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Endereço</h3>
+    Cep: <input type:"text" id="cep" : onblur="buscarCep(this.value)" /> <br> <br>
+    logradouro: <input type:"text" id="logradouro" /> <br> <br>
+    bairro: <input type:"text" id="bairro" /> <br> <br>
+    localidade: <input type: "text" id="localidade" /> <br> <br>
+    uf: <input type: "text" id="uf" /> <br> <br>
+    ibge: <input type: "text" id="ibge" /> <br> <br>
+    gia: <input type: "text" id="gia" /> <br> <br>
+    ddd: <input type: "text" id="ddd" /> <br> <br>
+    siafi: <input type: "text" id="siafi" /> <br> <br>
+
+    <input type="button" value="Preencher" onclick="preencherCep()" />
+</body>
+
+<script>
+    function buscarCep(cep) {
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => preencherCep(data))
+            .catch(error => alert(error))
+
+    }
+
+    function preencherCep(data) {
+        console.log(data);
+        document.getElementById("cep").value = data.cep;
+        document.getElementById("logradouro").value = data.logradouro;
+        document.getElementById("bairro").value = data.bairro;
+        document.getElementById("localidade").value = data.localidade;
+        document.getElementById("uf").value = data.uf;
+        document.getElementById("ibge").value = data.ibge;
+        document.getElementById("gia").value = data.gia;
+        document.getElementById("ddd").value = data.ddd;
+        document.getElementById("siafi").value = data.siafi;
+    }
+</script>
+
+</html>

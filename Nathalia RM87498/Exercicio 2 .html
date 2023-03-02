@@ -1,0 +1,58 @@
+<!--2.	Criar um endpoint que retorne uma lista de clientes  (5 clientes) com os seguintes campos
+Nome, endereço e telefone
+-consumir este endpoint via javascript;
+Mostrar os clientes em uma tabela html-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Clientes</h3>
+    <table>
+        <tr>
+
+            <td>Nome: </td>
+            <td>Endereço:</td>
+            <td>Telefone: </td>
+
+        </tr>
+        <tbody id="listaClientes">
+
+        </tbody>
+    </table>
+    <input type="button" value="Exibir Clientes" onclick="buscarCliente()" />
+
+</body>
+
+<script>
+      function criarListaCliente(data) {
+        debugger;
+        for (let i = 0; i < data.length; i++) {
+
+            let item  = `<tr><td>${data[i].Nome}</td>`;
+            let item2  = `<td>${data[i].Endereço}</td>`;
+            let item3  = `<td>${data[i].Telefone}</td></tr>`;
+            
+
+            document.getElementById("listaClientes").innerHTML += item + item2 + item3;
+            
+        }
+    }
+    function buscarCliente() {
+        fetch("http://demo9795478.mockable.io/RetornaClientes") //alterar link 
+            .then(response => response.json())
+            .then(data => criarListaCliente(data))
+            .catch(error => alert(error))
+    }
+
+  
+</script>
+
+</html>
