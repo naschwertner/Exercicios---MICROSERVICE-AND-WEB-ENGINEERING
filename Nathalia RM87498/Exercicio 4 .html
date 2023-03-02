@@ -7,14 +7,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Exercicio 4</title>
 </head>
 
 <body>
     <h3>Materias</h3>
     <table>
         <tr>
-            <td>Materias: </td>
+            <td>Tabela de Materias: </td>
         </tr>
         <tbody id="listaMaterias">
 
@@ -25,26 +25,26 @@
 </body>
 
 <script>
-      function criarListaMaterias(data) {
+    function criarListaMaterias(data) {
         debugger;
         for (let i = 0; i < data.length; i++) {
 
-            let item  = `<tr><td>${data[i].materias}</td></tr>`;
-           
-            
+            let item = `<tr><td>${data[i].materias}</td></tr>`;
 
-            document.getElementById("listaMaterias").innerHTML += item ;
-            
+
+
+            document.getElementById("listaMaterias").innerHTML += item;
+
         }
     }
     function buscarMaterias() {
-        fetch("http://demo9795478.mockable.io/RetornaMaterias") //alterar link 
+        fetch("http://demo9795478.mockable.io/RetornaMaterias") 
             .then(response => response.json())
             .then(data => criarListaMaterias(data))
             .catch(error => alert(error))
     }
 
-  
+
 </script>
 
 </html>

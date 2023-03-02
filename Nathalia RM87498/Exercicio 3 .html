@@ -1,16 +1,60 @@
 <!--3.	Criar um endpoint que retorne os 5 veiculos e adicione os itens retornados em uma 
-    combo (select option)-->
+combo box(select option)-->
+
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    
+    <title>Exercicio 3</title>
 
+</head>
+
+
+<body>
+    Veículo: <select id="veiculo" onclick="buscarVeiculos()">
+    </select><br>
 </body>
+
+
+<script>
+
+    function buscarVeiculos() {
+        fetch("http://demo9795478.mockable.io/RetornaVeiculos")
+            .then(response => response.json())
+            .then(data => criarComboVeiculos(data))
+            .catch(error => alert(error))
+
+    }
+
+    let jaRodou = false;
+    function criarListaVeiculos(data) {
+        for (let i = 0; i < data.length; i++) {
+            let item = `<tr>
+            <td>${data[i].nome}</td>
+            <td>${data[i].endereco}</td>
+            <td>${data[i].telefone}</td>
+            </tr>`;
+            document.getElementById("lista").innerHTML += item;
+        }
+    }
+
+    function criarComboVeiculos(data) {
+        if (jaRodou == false) {
+            for (let i = 0; i < data.length; i++) {
+                let item = `<option>${data[i]}</option>`;
+
+                document.getElementById("veiculo").innerHTML += item;
+                jaRodou = true;
+            }
+        }
+    }
+
+
+
+</script>
+
 </html>
